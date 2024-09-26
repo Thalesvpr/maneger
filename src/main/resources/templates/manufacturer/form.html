@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title>Create/Edit Manufacturer</title>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${#strings.isEmpty(manufacturer.id) ? 'Create Manufacturer' : 'Edit Manufacturer'}" class="my-4"></h1>
+        <form th:action="@{/manufacturers/save}" th:object="${manufacturer}" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="name" class="form-label">Manufacturer Name</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter name" required>
+                <div class="invalid-feedback">Please provide a valid name.</div>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="/manufacturers" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

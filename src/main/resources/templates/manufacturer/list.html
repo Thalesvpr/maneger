@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title>Manufacturers</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Manufacturers</h1>
+        <a href="/manufacturers/create" class="btn btn-primary mb-3">Create New Manufacturer</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="manufacturer : ${manufacturers}">
+                    <td th:text="${manufacturer.name}"></td>
+                    <td>
+                        <a th:href="@{/manufacturers/edit/{id}(id=${manufacturer.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/manufacturers/delete/{id}(id=${manufacturer.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

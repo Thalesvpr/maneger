@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title>Vehicles</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Vehicles</h1>
+        <a href="/vehicles/create" class="btn btn-primary mb-3">Create New Vehicle</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vehicle : ${vehicles}">
+                    <td th:text="${vehicle.name}"></td>
+                    <td th:text="${vehicle.type}"></td>
+                    <td>
+                        <a th:href="@{/vehicles/edit/{id}(id=${vehicle.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/vehicles/delete/{id}(id=${vehicle.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

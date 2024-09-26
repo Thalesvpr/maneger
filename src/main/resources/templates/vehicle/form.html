@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title>Create/Edit Vehicle</title>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${#strings.isEmpty(vehicle.id) ? 'Create Vehicle' : 'Edit Vehicle'}" class="my-4"></h1>
+        <form th:action="@{/vehicles/save}" th:object="${vehicle}" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="name" class="form-label">Vehicle Name</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter name" required>
+                <div class="invalid-feedback">Please provide a valid name.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Vehicle Type</label>
+                <select id="type" th:field="*{type}" class="form-control">
+                    <option value="CAR">Car</option>
+                    <option value="MOTORCYCLE">Motorcycle</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="manufacturer" class="form-label">Manufacturer</label>
+                <select id="manufacturer" th:field="*{manufacturer.id}" class="form-control">
+                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" th:field="*{description}" class="form-control" placeholder="Enter description" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="/vehicles" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
