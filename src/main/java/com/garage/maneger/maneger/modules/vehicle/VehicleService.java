@@ -2,6 +2,8 @@ package com.garage.maneger.maneger.modules.vehicle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +27,10 @@ public class VehicleService {
 
     public void delete(Long id) {
         vehicleRepository.deleteById(id);
+    }
+
+    public void update(Vehicle vehicle, Long id) {
+        vehicle.setId(id);
+        vehicleRepository.save(vehicle);
     }
 }

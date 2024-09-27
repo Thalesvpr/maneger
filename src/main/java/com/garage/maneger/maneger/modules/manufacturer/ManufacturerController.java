@@ -15,13 +15,13 @@ public class ManufacturerController {
     @GetMapping
     public String listManufacturers(Model model) {
         model.addAttribute("manufacturers", manufacturerService.findAll());
-        return "manufacturer/list";
+        return "manufacturer/manufactures";
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
         model.addAttribute("manufacturer", new Manufacturer());
-        return "manufacturer/form";
+        return "manufacturer/manufacture_form";
     }
 
     @PostMapping("/save")
@@ -33,7 +33,13 @@ public class ManufacturerController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         model.addAttribute("manufacturer", manufacturerService.findById(id).orElseThrow());
-        return "manufacturer/form";
+        return "manufacturer/manufacture_form";
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateManufacturer(@PathVariable Long id, @ModelAttribute Manufacturer manufacturer) {
+        manufacturerService.update(manufacturer, id);
+        return "redirect:/manufacturers";
     }
 
     @GetMapping("/delete/{id}")

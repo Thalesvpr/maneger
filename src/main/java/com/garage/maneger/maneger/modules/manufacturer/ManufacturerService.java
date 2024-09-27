@@ -19,6 +19,11 @@ public class ManufacturerService {
         return manufacturerRepository.findById(id);
     }
 
+    public void update(Manufacturer manufacturer, Long id){
+        manufacturer.setId(id);
+        manufacturerRepository.save(manufacturer);
+    }
+
     public Manufacturer save(Manufacturer manufacturer) {
         return manufacturerRepository.save(manufacturer);
     }

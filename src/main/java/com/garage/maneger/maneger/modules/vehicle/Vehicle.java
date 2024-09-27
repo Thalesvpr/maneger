@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.garage.maneger.maneger.modules.image.Image;
 import com.garage.maneger.maneger.modules.manufacturer.Manufacturer;
 
 @Entity(name = "vehicle")
@@ -21,7 +22,11 @@ public class Vehicle {
 
     private String description;
 
-    private String image;
+
+
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     private LocalDateTime createdAt;
 
